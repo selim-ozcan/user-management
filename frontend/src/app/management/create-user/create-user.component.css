@@ -1,0 +1,9 @@
+.update-user {
+  width: 50%;
+}
+
+@media (max-width: 500px) {
+  .update-user {
+    width: 90% !important;
+  }
+}

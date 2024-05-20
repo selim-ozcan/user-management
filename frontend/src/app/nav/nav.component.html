@@ -1,0 +1,45 @@
+<div style="margin-top: -2px">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span style="font-weight: 900; font-size: x-large">Management</span>
+      <div style="margin-left: 4rem">
+        <a
+          *ngIf="user && (user.role === 'admin' || user.role === 'user')"
+          style="
+            font-weight: 300;
+            color: white;
+            font-size: medium;
+            margin-right: 2rem;
+          "
+          [routerLink]="['/users']"
+          >User List</a
+        >
+        <a
+          *ngIf="user && user.role === 'admin'"
+          style="
+            font-weight: 300;
+            color: white;
+            font-size: medium;
+            margin-right: 1rem;
+          "
+          [routerLink]="['/users/create']"
+          >Create User</a
+        >
+      </div>
+
+      <span style="flex: 1 1 auto; margin-bottom: 500px"></span>
+
+      <ng-container *ngIf="user !== null">
+        <span style="font-weight: 300; font-size: medium"
+          >Hello, {{ user.username }}</span
+        >
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="authService.logout()">Logout</button>
+        </mat-menu>
+      </ng-container>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

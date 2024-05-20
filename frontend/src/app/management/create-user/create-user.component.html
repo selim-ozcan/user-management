@@ -1,0 +1,56 @@
+<div style="text-align: center; margin-top: 10rem">
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+</div>
+<ng-container *ngIf="user && !isLoading">
+  <div class="update-user" style="margin: 6rem auto">
+    <h1 style="text-align: center" mat-dialog-title>Create User</h1>
+    <div>
+      <mat-form-field style="width: 100%">
+        <mat-label>Username</mat-label>
+        <input matInput [(ngModel)]="user.username" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field style="width: 100%">
+        <mat-label>First Name</mat-label>
+        <input matInput [(ngModel)]="user.firstName" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field style="width: 100%">
+        <mat-label>Last Name</mat-label>
+        <input matInput [(ngModel)]="user.lastName" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field style="width: 100%">
+        <mat-label>Password</mat-label>
+        <input matInput [(ngModel)]="user.password" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field style="width: 100%">
+        <mat-label>Role</mat-label>
+        <mat-select [(value)]="user.role" required>
+          <mat-option *ngFor="let role of roles" [value]="role">{{
+            role
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div *ngIf="errors.length > 0">
+      <div
+        *ngFor="let error of errors"
+        class="alert alert-danger"
+        style="margin: 0 auto; margin-bottom: 1.5rem"
+      >
+        {{ "❗ " + error }}
+      </div>
+    </div>
+    <div style="display: flex; justify-content: end; gap: 1rem">
+      <button mat-flat-button color="primary" (click)="createUser()">
+        Create
+      </button>
+    </div>
+  </div>
+</ng-container>
