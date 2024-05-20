@@ -17,7 +17,7 @@ import { User } from 'src/users/entities/user.entity';
           database: configService.getOrThrow('POSTGRES_DB'),
           entities: [User],
           logging: true,
-          // production only
+          // development only
           synchronize: true,
         };
       },
